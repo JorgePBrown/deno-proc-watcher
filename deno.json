@@ -1,0 +1,17 @@
+{
+    "imports": {
+        "std/": "https://deno.land/std@0.201.0/"
+    },
+    "tasks": {
+        "dev": "deno run --watch -A main.ts"
+    },
+    "compilerOptions": {
+        "allowImportingTsExtensions": true
+    },
+    "fmt": {
+        "useTabs": false,
+        "lineWidth": 120,
+        "indentWidth": 4,
+        "proseWrap": "preserve"
+    }
+}
