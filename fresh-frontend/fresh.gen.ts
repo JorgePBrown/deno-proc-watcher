@@ -8,7 +8,9 @@ import * as $2 from "./routes/about.tsx";
 import * as $3 from "./routes/games/[gameId].tsx";
 import * as $4 from "./routes/games/index.tsx";
 import * as $5 from "./routes/index.tsx";
-import * as $6 from "./routes/procs/index.tsx";
+import * as $6 from "./routes/procs/[pid]/index.tsx";
+import * as $7 from "./routes/procs/[pid]/watch.tsx";
+import * as $8 from "./routes/procs/index.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 
 const manifest = {
@@ -19,7 +21,9 @@ const manifest = {
     "./routes/games/[gameId].tsx": $3,
     "./routes/games/index.tsx": $4,
     "./routes/index.tsx": $5,
-    "./routes/procs/index.tsx": $6,
+    "./routes/procs/[pid]/index.tsx": $6,
+    "./routes/procs/[pid]/watch.tsx": $7,
+    "./routes/procs/index.tsx": $8,
   },
   islands: {
     "./islands/Counter.tsx": $$0,

@@ -1,6 +1,6 @@
 import { PageProps } from "$fresh/server.ts";
 
-interface Proc {
+export interface Proc {
     pid: number;
     name: string;
     cmd: string;
@@ -30,12 +30,14 @@ export default async function ProcPage(props: PageProps) {
                 {procs.map((p) => {
                     return (
                         <li>
-                            <p>
-                                {p.name}
-                            </p>
-                            <p>
-                                {p.cmd}
-                            </p>
+                            <a href={`/procs/${p.pid}`}>
+                                <p>
+                                    {p.name}
+                                </p>
+                                <p>
+                                    {p.cmd}
+                                </p>
+                            </a>
                         </li>
                     );
                 })}
