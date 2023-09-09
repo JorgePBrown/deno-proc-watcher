@@ -36,7 +36,7 @@ export async function stopSession(
 
 export async function getRunningSessions(): Promise<Session[]> {
     const sessions = await dbClient.query(
-        `SELECT id, gameId, start, end FROM sessions WHERE end IS NULL`,
+        `SELECT id, gameId, start FROM sessions WHERE end IS NULL`,
     );
 
     return sessions;
