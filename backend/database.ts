@@ -1,11 +1,12 @@
 import { Client } from "https://deno.land/x/mysql@v2.12.0/mod.ts";
 
 const client = await new Client().connect({
-  hostname: "127.0.0.1",
-  username: "root",
-  db: "gamewatch",
-  poolSize: 3, // connection limit
-  password: "1234",
+    hostname: "127.0.0.1",
+    port: 3306,
+    username: "root",
+    db: "gamewatch",
+    poolSize: 3, // connection limit
+    password: "1234",
 });
 await client.execute(`CREATE DATABASE IF NOT EXISTS gamewatch`);
 await client.execute(`USE gamewatch`);

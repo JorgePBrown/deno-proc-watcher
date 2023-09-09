@@ -5,9 +5,6 @@
     "tasks": {
         "dev": "deno run --watch -A main.ts"
     },
-    "compilerOptions": {
-        "allowImportingTsExtensions": true
-    },
     "fmt": {
         "useTabs": false,
         "lineWidth": 120,
