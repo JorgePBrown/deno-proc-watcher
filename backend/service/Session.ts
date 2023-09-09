@@ -63,3 +63,9 @@ export async function finishGameSessions(gameId: number): Promise<void> {
 
     if (affectedRows! <= 0) throw new Error("Problem finishing sessions");
 }
+
+export async function finishAllSessions(): Promise<void> {
+    await dbClient.execute(
+        `UPDATE sessions SET end = NOW() WHERE end IS NULL`,
+    );
+}

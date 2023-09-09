@@ -3,7 +3,7 @@
         "std/": "https://deno.land/std@0.201.0/"
     },
     "tasks": {
-        "dev": "deno run --watch -A main.ts"
+        "dev": "DEV=true deno run --watch -A main.ts"
     },
     "fmt": {
         "useTabs": false,

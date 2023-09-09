@@ -1,6 +1,15 @@
 import Fastify from "npm:fastify";
 import GameController from "./controller/Game.ts";
 import ProcController from "./controller/Proc.ts";
+import { finishAllSessions } from "./service/Session.ts";
+
+if (!Deno.env.has("DEV")) {
+    globalThis.addEventListener("unload", async () => {
+        await finishAllSessions();
+    });
+} else {
+    console.log("RUNNING IN DEV MODE");
+}
 
 const fastify = Fastify({
     logger: true,
