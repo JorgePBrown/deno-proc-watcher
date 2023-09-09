@@ -10,5 +10,6 @@ export const Game = z.object({
     id: z.number(),
     name: z.string(),
     cmd: z.string(),
+    watched: z.boolean(),
 });
 export type Game = z.infer<typeof Game>;

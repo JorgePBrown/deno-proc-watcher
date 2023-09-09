@@ -15,6 +15,7 @@ await client.execute(`CREATE TABLE IF NOT EXISTS games(
 id int(11) NOT NULL AUTO_INCREMENT,
 name varchar(256) NOT NULL,
 cmd varchar(256) NOT NULL,
+watched boolean NOT NULL,
 PRIMARY KEY(id)
 )`);
 

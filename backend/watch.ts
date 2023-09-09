@@ -9,7 +9,7 @@ const runningSessionsByGameId: Map<number, Session> = new Map();
 const watchList: Map<string, Game> = new Map();
 
 (async function populateWatchList() {
-    (await getGames()).forEach(addToWatchList);
+    (await getGames()).filter((g) => g.watched).forEach(addToWatchList);
     (await getRunningSessions()).forEach((s) => runningSessionsByGameId.set(s.gameId, s));
 })();
 

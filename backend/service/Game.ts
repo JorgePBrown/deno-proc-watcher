@@ -12,7 +12,7 @@ export async function createGame(
 
     if (existingGame.length === 0) {
         const { affectedRows, lastInsertId } = await dbClient.execute(
-            `INSERT INTO games(name, cmd) VALUES (?, ?)`,
+            `INSERT INTO games(name, cmd, watched) VALUES (?, ?, true)`,
             [name, cmd],
         );
 
@@ -24,6 +24,7 @@ export async function createGame(
             name,
             cmd,
             id: lastInsertId!,
+            watched: true,
         };
 
         addToWatchList(game);
@@ -36,7 +37,7 @@ export async function createGame(
 
 export async function getGames(): Promise<Game[]> {
     const games = await dbClient.query(
-        `SELECT id, name, cmd FROM games`,
+        `SELECT id, name, cmd, watched FROM games`,
     );
     return games;
 }
