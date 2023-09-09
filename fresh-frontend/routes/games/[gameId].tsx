@@ -13,7 +13,7 @@ export default async function GamePage(_req: Request, ctx: RouteContext) {
 
     const { time }: GameTimeResponse = await res.json();
 
-    const hours = time / (1000 * 60 * 60 * 60);
+    const hours = time / (1000 * 60 * 60);
     const flooredHours = Math.floor(hours);
 
     const leftOverMinutes = Math.floor((hours - flooredHours) * 60);
