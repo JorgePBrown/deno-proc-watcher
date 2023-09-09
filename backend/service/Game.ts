@@ -32,7 +32,7 @@ export async function createGame(
         return game;
     }
 
-    return existingGame;
+    return existingGame[0];
 }
 
 export async function getGames(): Promise<Game[]> {
