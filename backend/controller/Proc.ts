@@ -75,5 +75,13 @@ export default class ProcController {
 
             await reply.send(procs);
         });
+
+        fastify.get("/procs/:id", async (request, reply) => {
+            const id = +request.params.id;
+
+            const procs = await ps();
+
+            reply.send(procs.find((p) => p.pid === id));
+        });
     }
 }
