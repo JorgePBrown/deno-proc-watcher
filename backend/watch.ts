@@ -17,6 +17,10 @@ export function addToWatchList(game: Game) {
     watchList.set(game.name, game);
 }
 
+export function removeFromWatchList(game: Game) {
+    watchList.delete(game.name);
+}
+
 async function watchLoop() {
     const procs = await ps();
 

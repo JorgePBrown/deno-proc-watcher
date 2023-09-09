@@ -54,3 +54,12 @@ export async function getGameRuntime(gameId: number): Promise<number> {
         return acc + diff;
     }, 0);
 }
+
+export async function finishGameSessions(gameId: number): Promise<void> {
+    const { affectedRows } = await dbClient.execute(
+        `UPDATE sessions SET end = NOW() WHERE gameId = ? AND end IS NULL`,
+        [gameId],
+    );
+
+    if (affectedRows! <= 0) throw new Error("Problem finishing sessions");
+}
