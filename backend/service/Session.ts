@@ -55,6 +55,16 @@ export async function getGameRuntime(gameId: number): Promise<number> {
     }, 0);
 }
 
+export async function getGameSessions(gameId: number): Promise<Session[]> {
+    const sessions: Session[] = await dbClient
+        .query(
+            `SELECT start, end FROM sessions WHERE end IS NOT NULL AND gameId = ?`,
+            [gameId],
+        );
+
+    return sessions;
+}
+
 export async function finishGameSessions(gameId: number): Promise<void> {
     const { affectedRows } = await dbClient.execute(
         `UPDATE sessions SET end = NOW() WHERE gameId = ? AND end IS NULL`,

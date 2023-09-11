@@ -2,6 +2,7 @@ import Fastify from "npm:fastify";
 import GameController from "./controller/Game.ts";
 import ProcController from "./controller/Proc.ts";
 import { finishAllSessions } from "./service/Session.ts";
+import SessionController from "./controller/Session.ts";
 
 if (!Deno.env.has("DEV")) {
     globalThis.addEventListener("unload", async () => {
@@ -17,6 +18,7 @@ const fastify = Fastify({
 
 new GameController(fastify);
 new ProcController(fastify);
+new SessionController(fastify);
 
 // Run the server!
 fastify.listen({ port: 3000 }, function (err, _address) {
