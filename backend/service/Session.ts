@@ -66,12 +66,10 @@ export async function getGameSessions(gameId: number): Promise<Session[]> {
 }
 
 export async function finishGameSessions(gameId: number): Promise<void> {
-    const { affectedRows } = await dbClient.execute(
+    await dbClient.execute(
         `UPDATE sessions SET end = NOW() WHERE gameId = ? AND end IS NULL`,
         [gameId],
     );
-
-    if (affectedRows! <= 0) throw new Error("Problem finishing sessions");
 }
 
 export async function finishAllSessions(): Promise<void> {
