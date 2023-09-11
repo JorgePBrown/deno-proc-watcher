@@ -5,12 +5,15 @@
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/about.tsx";
-import * as $3 from "./routes/games/[gameId].tsx";
-import * as $4 from "./routes/games/index.tsx";
-import * as $5 from "./routes/index.tsx";
-import * as $6 from "./routes/procs/[pid]/index.tsx";
-import * as $7 from "./routes/procs/[pid]/watch.tsx";
-import * as $8 from "./routes/procs/index.tsx";
+import * as $3 from "./routes/games/[gameId]/index.tsx";
+import * as $4 from "./routes/games/[gameId]/sessions.tsx";
+import * as $5 from "./routes/games/[gameId]/unwatch.tsx";
+import * as $6 from "./routes/games/[gameId]/watch.tsx";
+import * as $7 from "./routes/games/index.tsx";
+import * as $8 from "./routes/index.tsx";
+import * as $9 from "./routes/procs/[pid]/index.tsx";
+import * as $10 from "./routes/procs/[pid]/watch.tsx";
+import * as $11 from "./routes/procs/index.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 
 const manifest = {
@@ -18,12 +21,15 @@ const manifest = {
     "./routes/_404.tsx": $0,
     "./routes/_app.tsx": $1,
     "./routes/about.tsx": $2,
-    "./routes/games/[gameId].tsx": $3,
-    "./routes/games/index.tsx": $4,
-    "./routes/index.tsx": $5,
-    "./routes/procs/[pid]/index.tsx": $6,
-    "./routes/procs/[pid]/watch.tsx": $7,
-    "./routes/procs/index.tsx": $8,
+    "./routes/games/[gameId]/index.tsx": $3,
+    "./routes/games/[gameId]/sessions.tsx": $4,
+    "./routes/games/[gameId]/unwatch.tsx": $5,
+    "./routes/games/[gameId]/watch.tsx": $6,
+    "./routes/games/index.tsx": $7,
+    "./routes/index.tsx": $8,
+    "./routes/procs/[pid]/index.tsx": $9,
+    "./routes/procs/[pid]/watch.tsx": $10,
+    "./routes/procs/index.tsx": $11,
   },
   islands: {
     "./islands/Counter.tsx": $$0,
