@@ -64,3 +64,25 @@ export async function unwatchGame(gameId: number): Promise<void> {
 
     removeFromWatchList(game);
 }
+
+export async function rewatchGame(gameId: number): Promise<Game> {
+    const { affectedRows } = await dbClient.execute(
+        `UPDATE games SET watched = true WHERE id = ?`,
+        [
+            gameId,
+        ],
+    );
+
+    const [game] = await dbClient.query(
+        `SELECT id, name, cmd, watched FROM games WHERE id = ?`,
+        [
+            gameId,
+        ],
+    );
+
+    if (affectedRows! <= 0) throw new Error(`Problem rewatching game ${gameId}.`);
+
+    addToWatchList(game);
+
+    return game;
+}
