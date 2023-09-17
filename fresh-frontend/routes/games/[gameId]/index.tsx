@@ -1,4 +1,5 @@
 import { RouteContext } from "$fresh/server.ts";
+import type { Game } from "../index.tsx";
 
 interface GameTimeResponse {
     time: number;
@@ -32,17 +33,30 @@ export default async function GamePage(_req: Request, ctx: RouteContext) {
 
     const text = durationToString(time);
 
+    const gameRes = await fetch(`http://localhost:3000/games/${gameId}`);
+
+    if (!gameRes.ok) return <p>An error occurred</p>;
+
+    const game: Game = await gameRes.json();
+
+    const toggleWatch = game.watched
+        ? <a href={`/games/${gameId}/unwatch`}>Unwatch</a>
+        : <a href={`/games/${gameId}/watch`}>Watch</a>;
+
     return (
         <div>
             <h1>
-                Game Time
+                {game.name}
             </h1>
+            <h2>
+                Game Time
+            </h2>
             <p>
                 {text}
             </p>
             <a href={`/games/${gameId}/sessions`}>Sessions</a>
             <br />
-            <a href={`/games/${gameId}/unwatch`}>Unwatch</a>
+            {toggleWatch}
         </div>
     );
 }
