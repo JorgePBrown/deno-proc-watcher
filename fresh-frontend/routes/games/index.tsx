@@ -1,6 +1,7 @@
-interface Game {
+export interface Game {
     id: number;
     name: string;
+    watchedName: string;
     watched: boolean;
 }
 export default async function GamePage() {
@@ -36,7 +37,9 @@ export default async function GamePage() {
             <ul>
                 {unwatched.map((g) => (
                     <li>
-                        <span>{g.name}</span>{" "}
+                        <a href={`/games/${g.id}`}>
+                            <span>{g.name}</span>
+                        </a>{" "}
                         <a href={`/games/${g.id}/watch`}>
                             <span>Watch again</span>
                         </a>
