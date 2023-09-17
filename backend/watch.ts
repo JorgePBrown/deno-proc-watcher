@@ -54,4 +54,4 @@ async function watchLoop() {
     }
 }
 
-setInterval(watchLoop, 1000);
+setInterval(watchLoop, Deno.env.has("DEV") ? 1000 : 5000);
