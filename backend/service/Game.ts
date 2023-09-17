@@ -4,7 +4,7 @@ import { addToWatchList, removeFromWatchList } from "../watch.ts";
 import { finishGameSessions } from "./Session.ts";
 
 export async function createGame(
-    { name, cmd }: IncomingGame,
+    { name }: IncomingGame,
 ): Promise<Game> {
     const existingGame = await dbClient.query(
         `SELECT id FROM games WHERE name = ?`,
@@ -13,17 +13,16 @@ export async function createGame(
 
     if (existingGame.length === 0) {
         const { affectedRows, lastInsertId } = await dbClient.execute(
-            `INSERT INTO games(name, cmd, watched) VALUES (?, ?, true)`,
-            [name, cmd],
+            `INSERT INTO games(name, watched) VALUES (?, true)`,
+            [name],
         );
 
         if (affectedRows! <= 0) {
-            throw new Error(`Problem inserting game (${name}, ${cmd})`);
+            throw new Error(`Problem inserting game (${name})`);
         }
 
         const game = {
             name,
-            cmd,
             id: lastInsertId!,
             watched: true,
         };
@@ -38,7 +37,7 @@ export async function createGame(
 
 export async function getGames(): Promise<Game[]> {
     const games = await dbClient.query(
-        `SELECT id, name, cmd, watched FROM games`,
+        `SELECT id, name, watched FROM games`,
     );
     return games;
 }
@@ -74,7 +73,7 @@ export async function rewatchGame(gameId: number): Promise<Game> {
     );
 
     const [game] = await dbClient.query(
-        `SELECT id, name, cmd, watched FROM games WHERE id = ?`,
+        `SELECT id, name, watched FROM games WHERE id = ?`,
         [
             gameId,
         ],

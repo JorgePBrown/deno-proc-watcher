@@ -10,7 +10,7 @@ export default class ProcController {
                     type: "object",
                     properties: {
                         name: { type: "string" },
-                        cmd: { type: "string" },
+                        pid: { type: "number" },
                         ppid: { type: "number" },
                     },
                 },
@@ -22,20 +22,13 @@ export default class ProcController {
                             "required": [
                                 "pid",
                                 "name",
-                                "cmd",
                                 "ppid",
-                                "uid",
-                                "cpu",
-                                "memory",
                             ],
                             "properties": {
                                 "pid": {
                                     "type": "integer",
                                 },
                                 "name": {
-                                    "type": "string",
-                                },
-                                "cmd": {
                                     "type": "string",
                                 },
                                 "ppid": {
@@ -69,7 +62,6 @@ export default class ProcController {
                 }
             }
             sfilterProcs("name");
-            sfilterProcs("cmd");
             nfilterProcs("ppid");
             nfilterProcs("pid");
 

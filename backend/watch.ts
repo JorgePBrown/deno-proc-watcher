@@ -40,7 +40,7 @@ async function watchLoop() {
     }
 
     for (const game of watchList.values()) {
-        if (procs.every((p) => p.cmd !== game.cmd)) {
+        if (procs.every((p) => p.name !== game.name)) {
             if (runningSessionsByGameId.has(game.id)) {
                 console.log(`${game.name} stopped.`);
                 const session = runningSessionsByGameId.get(game.id)!;
