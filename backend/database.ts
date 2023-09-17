@@ -14,6 +14,7 @@ await client.execute(`USE gamewatch`);
 await client.execute(`CREATE TABLE IF NOT EXISTS games(
 id int(11) NOT NULL AUTO_INCREMENT,
 name varchar(256) NOT NULL UNIQUE,
+watchedName varchar(256) NOT NULL UNIQUE,
 watched boolean NOT NULL,
 PRIMARY KEY(id)
 )`);

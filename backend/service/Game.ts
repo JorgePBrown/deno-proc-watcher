@@ -4,25 +4,26 @@ import { addToWatchList, removeFromWatchList } from "../watch.ts";
 import { finishGameSessions } from "./Session.ts";
 
 export async function createGame(
-    { name }: IncomingGame,
+    { name, watchedName }: IncomingGame,
 ): Promise<Game> {
     const existingGame = await dbClient.query(
-        `SELECT id FROM games WHERE name = ?`,
-        [name],
+        `SELECT id, name, watchedName, watched FROM games WHERE name = ? OR watchedName = ?`,
+        [name, watchedName],
     );
 
     if (existingGame.length === 0) {
         const { affectedRows, lastInsertId } = await dbClient.execute(
-            `INSERT INTO games(name, watched) VALUES (?, true)`,
-            [name],
+            `INSERT INTO games(name, watchedName, watched) VALUES (?, ?, true)`,
+            [name, watchedName],
         );
 
         if (affectedRows! <= 0) {
-            throw new Error(`Problem inserting game (${name})`);
+            throw new Error(`Problem inserting game (${name}, ${watchedName})`);
         }
 
         const game = {
             name,
+            watchedName,
             id: lastInsertId!,
             watched: true,
         };
@@ -37,7 +38,7 @@ export async function createGame(
 
 export async function getGames(): Promise<Game[]> {
     const games = await dbClient.query(
-        `SELECT id, name, watched FROM games`,
+        `SELECT id, name, watchedName, watched FROM games`,
     );
     return games;
 }
@@ -51,7 +52,7 @@ export async function unwatchGame(gameId: number): Promise<void> {
     );
 
     const [game] = await dbClient.query(
-        `SELECT id, name FROM games WHERE id = ?`,
+        `SELECT id, name, watchedName FROM games WHERE id = ?`,
         [
             gameId,
         ],
@@ -73,7 +74,7 @@ export async function rewatchGame(gameId: number): Promise<Game> {
     );
 
     const [game] = await dbClient.query(
-        `SELECT id, name, watched FROM games WHERE id = ?`,
+        `SELECT id, name, watchedName, watched FROM games WHERE id = ?`,
         [
             gameId,
         ],

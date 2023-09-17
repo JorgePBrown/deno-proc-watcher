@@ -14,11 +14,11 @@ const watchList: Map<string, Game> = new Map();
 })();
 
 export function addToWatchList(game: Game) {
-    watchList.set(game.name, game);
+    watchList.set(game.watchedName, game);
 }
 
 export function removeFromWatchList(game: Game) {
-    watchList.delete(game.name);
+    watchList.delete(game.watchedName);
 }
 
 async function watchLoop() {
@@ -29,7 +29,7 @@ async function watchLoop() {
             const game = watchList.get(proc.name)!;
 
             if (!runningSessionsByGameId.has(game.id)) {
-                console.log(`Starting new session for ${game}`);
+                console.log(`Starting new session for ${JSON.stringify(game)}`);
                 const session = await createSession({
                     gameId: game.id,
                 });
@@ -40,7 +40,7 @@ async function watchLoop() {
     }
 
     for (const game of watchList.values()) {
-        if (procs.every((p) => p.name !== game.name)) {
+        if (procs.every((p) => p.name !== game.watchedName)) {
             if (runningSessionsByGameId.has(game.id)) {
                 console.log(`${game.name} stopped.`);
                 const session = runningSessionsByGameId.get(game.id)!;
