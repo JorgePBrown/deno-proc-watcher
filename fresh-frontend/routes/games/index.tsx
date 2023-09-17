@@ -1,7 +1,6 @@
 interface Game {
     id: number;
     name: string;
-    cmd: string;
     watched: boolean;
 }
 export default async function GamePage() {

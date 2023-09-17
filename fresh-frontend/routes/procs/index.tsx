@@ -3,17 +3,14 @@ import { PageProps } from "$fresh/server.ts";
 export interface Proc {
     pid: number;
     name: string;
-    cmd: string;
     ppid: number;
     uid: number;
-    cpu: number;
-    memory: number;
 }
 export default async function ProcPage(props: PageProps) {
     const incomingUrl = new URL(props.url);
-    const cmdQuery = incomingUrl.searchParams.get("cmd");
+    const nameQuery = incomingUrl.searchParams.get("name");
     const url = new URL(`http://localhost:3000/procs`);
-    if (cmdQuery) url.searchParams.set("cmd", cmdQuery);
+    if (nameQuery) url.searchParams.set("name", nameQuery);
     const res = await fetch(url);
 
     if (!res) return <p>An error occurred</p>;
@@ -23,7 +20,7 @@ export default async function ProcPage(props: PageProps) {
     return (
         <div>
             <form>
-                <input type="text" name="cmd" value={cmdQuery ?? ""} />
+                <input type="text" name="name" value={nameQuery ?? ""} />
                 <button type="submit">Search</button>
             </form>
             <ul>
@@ -33,9 +30,6 @@ export default async function ProcPage(props: PageProps) {
                             <a href={`/procs/${p.pid}`}>
                                 <p>
                                     {p.name}
-                                </p>
-                                <p>
-                                    {p.cmd}
                                 </p>
                             </a>
                         </li>
