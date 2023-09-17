@@ -14,27 +14,24 @@ import * as $8 from "./routes/index.tsx";
 import * as $9 from "./routes/procs/[pid]/index.tsx";
 import * as $10 from "./routes/procs/[pid]/watch.tsx";
 import * as $11 from "./routes/procs/index.tsx";
-import * as $$0 from "./islands/Counter.tsx";
 
 const manifest = {
-  routes: {
-    "./routes/_404.tsx": $0,
-    "./routes/_app.tsx": $1,
-    "./routes/about.tsx": $2,
-    "./routes/games/[gameId]/index.tsx": $3,
-    "./routes/games/[gameId]/sessions.tsx": $4,
-    "./routes/games/[gameId]/unwatch.tsx": $5,
-    "./routes/games/[gameId]/watch.tsx": $6,
-    "./routes/games/index.tsx": $7,
-    "./routes/index.tsx": $8,
-    "./routes/procs/[pid]/index.tsx": $9,
-    "./routes/procs/[pid]/watch.tsx": $10,
-    "./routes/procs/index.tsx": $11,
-  },
-  islands: {
-    "./islands/Counter.tsx": $$0,
-  },
-  baseUrl: import.meta.url,
+    routes: {
+        "./routes/_404.tsx": $0,
+        "./routes/_app.tsx": $1,
+        "./routes/about.tsx": $2,
+        "./routes/games/[gameId]/index.tsx": $3,
+        "./routes/games/[gameId]/sessions.tsx": $4,
+        "./routes/games/[gameId]/unwatch.tsx": $5,
+        "./routes/games/[gameId]/watch.tsx": $6,
+        "./routes/games/index.tsx": $7,
+        "./routes/index.tsx": $8,
+        "./routes/procs/[pid]/index.tsx": $9,
+        "./routes/procs/[pid]/watch.tsx": $10,
+        "./routes/procs/index.tsx": $11,
+    },
+    islands: {},
+    baseUrl: import.meta.url,
 };
 
 export default manifest;
