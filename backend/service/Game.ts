@@ -43,6 +43,14 @@ export async function getGames(): Promise<Game[]> {
     return games;
 }
 
+export async function getGame(gameId: number): Promise<Game> {
+    const games = await dbClient.query(
+        `SELECT id, name, watchedName, watched FROM games WHERE id = ? LIMIT 1`,
+        [gameId],
+    );
+    return games[0];
+}
+
 export async function unwatchGame(gameId: number): Promise<void> {
     const { affectedRows } = await dbClient.execute(
         `UPDATE games SET watched = false WHERE id = ?`,

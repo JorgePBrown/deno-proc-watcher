@@ -1,6 +1,6 @@
 import { FastifyInstance } from "npm:fastify";
 import { IncomingGame } from "../model/Game.ts";
-import { createGame, getGames, rewatchGame, unwatchGame } from "../service/Game.ts";
+import { createGame, getGame, getGames, rewatchGame, unwatchGame } from "../service/Game.ts";
 import { getGameRuntime } from "../service/Session.ts";
 
 export default class GameController {
@@ -8,6 +8,12 @@ export default class GameController {
         fastify.get("/games", async (_request, reply) => {
             const games = await getGames();
             reply.send(games);
+        });
+
+        fastify.get("/games/:gameId", async (request, reply) => {
+            const { gameId } = request.params;
+            const game = await getGame(+gameId);
+            reply.send(game);
         });
 
         fastify.get("/games/:gameId/time", async (request, reply) => {
