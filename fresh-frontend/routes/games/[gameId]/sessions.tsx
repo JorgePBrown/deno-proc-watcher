@@ -19,21 +19,24 @@ export const handler: Handlers = {
 };
 export default function GameSessionsPage(props: PageProps) {
     return (
-        <ul>
-            {props.data.sessions.map((s) => {
-                return (
-                    <li>
-                        <p>
-                            {new Date(s.start).toLocaleString()}
-                        </p>
-                        <p>
-                            Duration: {durationToString(
-                                new Date(s.end) - new Date(s.start),
-                            )}
-                        </p>
-                    </li>
-                );
-            })}
-        </ul>
+        <div>
+            <h1>Sessions</h1>
+            <ul>
+                {props.data.sessions.map((s) => {
+                    return (
+                        <li>
+                            <p>
+                                {new Date(s.start).toLocaleString()}
+                            </p>
+                            <p>
+                                Duration: {durationToString(
+                                    new Date(s.end) - new Date(s.start),
+                                )}
+                            </p>
+                        </li>
+                    );
+                })}
+            </ul>
+        </div>
     );
 }
