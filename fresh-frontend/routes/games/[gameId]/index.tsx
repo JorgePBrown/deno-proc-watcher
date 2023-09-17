@@ -12,7 +12,9 @@ export function durationToString(time: number): string {
     let text = "";
 
     if (flooredHours > 0) {
-        text += flooredHours === 1 ? "1 hour and " : `${flooredHours} hours and `;
+        text += flooredHours === 1
+            ? "1 hour and "
+            : `${flooredHours} hours and `;
     }
 
     text += `${leftOverMinutes} minutes`;

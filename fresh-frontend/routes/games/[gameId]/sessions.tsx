@@ -27,7 +27,9 @@ export default function GameSessionsPage(props: PageProps) {
                             {new Date(s.start).toLocaleString()}
                         </p>
                         <p>
-                            Duration: {durationToString(new Date(s.end) - new Date(s.start))}
+                            Duration: {durationToString(
+                                new Date(s.end) - new Date(s.start),
+                            )}
                         </p>
                     </li>
                 );
