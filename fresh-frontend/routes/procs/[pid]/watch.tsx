@@ -22,6 +22,7 @@ export const handler: Handlers = {
                 method: "POST",
                 body: JSON.stringify({
                     name: incURL.searchParams.get("name"),
+                    watchedName: proc.name,
                 }),
                 headers: {
                     "Content-Type": "application/json",
